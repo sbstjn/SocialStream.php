@@ -30,7 +30,7 @@ class TwitterStream extends SocialStreamBase {
     $oauth_hash .= 'oauth_token='. $this->accessToken . '&';
     $oauth_hash .= 'oauth_version=1.0';
     
-    $base = 'GET&' . rawurlencode('https://api.twitter.com/1.1/statuses/user_timeline.json') . '&' . rawurlencode($oauth_hash);
+    $base = 'GET&' . rawurlencode($this->url()) . '&' . rawurlencode($oauth_hash);
     $key = rawurlencode($this->consumerSecret) . '&' . rawurlencode($this->accessSecret);
     
     $signature = rawurlencode(base64_encode(hash_hmac('sha1', $base, $key, true)));
